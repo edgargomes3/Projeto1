@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="emailEmptyLabel">Necessita introduzir um email válido!</string>
+    <string name="passwordEmptyLabel">Necessita introduzir uma palavra-passe!</string>
+    <string name="noAccountLabel">"Ainda não tem conta? "</string>
+    <string name="noAccountRegisterLabel">Registe-se!</string>
+    <string name="emailExampleLabel">email@exemplo.com</string>
+    <string name="successLoginLabel">Login efetuado com sucesso!</string>
+    <string name="noSuccessLoginLabel">Login falhado!</string>
+</resources>

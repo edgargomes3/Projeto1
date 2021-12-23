@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name" translatable="false">Projeto1</string>
+    <string name="emailEmptyLabel">You need to enter a valid email address!</string>
+    <string name="passwordEmptyLabel">You need to enter a password!</string>
+    <string name="loginLabel" translatable="false">Login</string>
+    <string name="noAccountLabel">"Still don't have an account? "</string>
+    <string name="noAccountRegisterLabel">Register!</string>
+    <string name="emailExampleLabel">email@example.com</string>
+    <string name="passwordExampleLabel" translatable="false">password</string>
+    <string name="successLoginLabel">Login successfully!</string>
+    <string name="noSuccessLoginLabel">Login failed!</string>
+</resources>
