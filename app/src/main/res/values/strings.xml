@@ -9,4 +9,5 @@
     <string name="passwordExampleLabel" translatable="false">password</string>
     <string name="successLoginLabel">Login successfully!</string>
     <string name="noSuccessLoginLabel">Login failed!</string>
+    <string name="registerLabel">Register</string>
 </resources>

@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:id="@+id/nomeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/dataNascimentoLayout"
+        android:gravity="center"
+        >
+
+        <TextView
+            android:id="@+id/nomeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nome: "
+            />
+
+        <EditText
+            android:id="@+id/nomeEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/dataNascimentoLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toTopOf="@+id/nomeLayout"
+        app:layout_constraintBottom_toBottomOf="@+id/alturaLayout"
+        android:gravity="center"
+        >
+
+        <TextView
+            android:id="@+id/dataNascimentoTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Data Nascimento: "
+            />
+
+        <EditText
+            android:id="@+id/dataNascimentoRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:ems="10" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/alturaLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toTopOf="@+id/dataNascimentoLayout"
+        app:layout_constraintBottom_toBottomOf="@+id/generoLayout"
+        android:gravity="center"
+        >
+
+        <TextView
+            android:id="@+id/alturaTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Altura: "
+            />
+
+        <EditText
+            android:id="@+id/alturaEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/generoLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toTopOf="@+id/alturaLayout"
+        app:layout_constraintBottom_toBottomOf="@+id/paisLayout"
+        android:gravity="center"
+        >
+
+        <TextView
+            android:id="@+id/generoTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Altura: "
+            />
+
+        <EditText
+            android:id="@+id/generoEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/paisLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toTopOf="@+id/generoLayout"
+        app:layout_constraintBottom_toBottomOf="@+id/codpostalLayout"
+        android:gravity="center"
+        >
+
+        <TextView
+            android:id="@+id/paisTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="País: "
+            />
+
+        <EditText
+            android:id="@+id/paisEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/codpostalLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toTopOf="@+id/paisLayout"
+        app:layout_constraintBottom_toBottomOf="@+id/educacaoLayout"
+        android:gravity="center"
+        >
+
+        <TextView
+            android:id="@+id/codpostalTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Código Postal: "
+            />
+
+        <EditText
+            android:id="@+id/codpostalEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/educacaoLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toTopOf="@+id/codpostalLayout"
+        app:layout_constraintBottom_toBottomOf="@+id/tipoDiabetesLayout"
+        android:gravity="center"
+        >
+
+        <TextView
+            android:id="@+id/educacaoTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Educação: "
+            />
+
+        <EditText
+            android:id="@+id/educacaoEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/tipoDiabetesLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toTopOf="@+id/educacaoLayout"
+        app:layout_constraintBottom_toBottomOf="@+id/anoDiagLayout"
+        android:gravity="center"
+        >
+
+        <TextView
+            android:id="@+id/tipoDiabetesTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tipo Diabetes: "
+            />
+
+        <EditText
+            android:id="@+id/tipoDiabetesEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/anoDiagLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toTopOf="@+id/tipoDiabetesLayout"
+        app:layout_constraintBottom_toBottomOf="@+id/caregiverLayout"
+        android:gravity="center"
+        >
+
+        <TextView
+            android:id="@+id/anoDiagTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ano Diagnóstico: "
+            />
+
+        <EditText
+            android:id="@+id/anoDiagEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/caregiverLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toTopOf="@+id/anoDiagLayout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:gravity="center"
+        >
+
+        <TextView
+            android:id="@+id/caregiverTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Caregiver: "
+            />
+
+        <EditText
+            android:id="@+id/caregiverEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

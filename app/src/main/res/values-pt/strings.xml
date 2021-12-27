@@ -7,4 +7,5 @@
     <string name="emailExampleLabel">email@exemplo.com</string>
     <string name="successLoginLabel">Login efetuado com sucesso!</string>
     <string name="noSuccessLoginLabel">Login falhado!</string>
+    <string name="registerLabel">Registar</string>
 </resources>

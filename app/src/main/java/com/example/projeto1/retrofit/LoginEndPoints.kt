@@ -10,5 +10,5 @@ interface LoginEndPoints {
 
     @FormUrlEncoded
     @POST("/api/register/post")
-    fun postRegister(@Field("username") username: String, @Field("password") password: String): Call<LoginOutputPost>
+    fun postRegister(@Field("email") email: String, @Field("password") password: String): Call<LoginOutputPost>
 }
