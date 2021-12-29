@@ -13,7 +13,8 @@
         tools:ignore="MissingConstraints"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="@+id/dataNascimentoLayout"
-        android:gravity="center"
+        android:gravity="left"
+        android:layout_margin="10pt"
         >
 
         <TextView
@@ -28,7 +29,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:ems="10" />
+            android:ems="10"
+            />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/dataNascimentoLayout"
@@ -37,7 +39,8 @@
         tools:ignore="MissingConstraints"
         app:layout_constraintTop_toTopOf="@+id/nomeLayout"
         app:layout_constraintBottom_toBottomOf="@+id/alturaLayout"
-        android:gravity="center"
+        android:gravity="left"
+        android:layout_margin="10pt"
         >
 
         <TextView
@@ -61,7 +64,8 @@
         tools:ignore="MissingConstraints"
         app:layout_constraintTop_toTopOf="@+id/dataNascimentoLayout"
         app:layout_constraintBottom_toBottomOf="@+id/generoLayout"
-        android:gravity="center"
+        android:gravity="left"
+        android:layout_margin="10pt"
         >
 
         <TextView
@@ -85,22 +89,30 @@
         tools:ignore="MissingConstraints"
         app:layout_constraintTop_toTopOf="@+id/alturaLayout"
         app:layout_constraintBottom_toBottomOf="@+id/paisLayout"
-        android:gravity="center"
+        android:gravity="left"
+        android:layout_margin="10pt"
         >
 
         <TextView
             android:id="@+id/generoTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Altura: "
+            android:text="Genero: "
             />
 
-        <EditText
-            android:id="@+id/generoEditText"
+        <CheckBox
+            android:id="@+id/generoCheckBox1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="number"
-            android:ems="10" />
+            android:text="Masculino"
+            />
+
+        <CheckBox
+            android:id="@+id/generoCheckBox2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Feminino"
+            />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/paisLayout"
@@ -109,21 +121,25 @@
         tools:ignore="MissingConstraints"
         app:layout_constraintTop_toTopOf="@+id/generoLayout"
         app:layout_constraintBottom_toBottomOf="@+id/codpostalLayout"
-        android:gravity="center"
+        android:gravity="left"
+        android:layout_margin="10pt"
         >
 
         <TextView
             android:id="@+id/paisTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingVertical="10dp"
             android:text="País: "
             />
 
-        <EditText
-            android:id="@+id/paisEditText"
+        <com.hbb20.CountryCodePicker
+            android:id="@+id/ccp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10" />
+            app:ccp_showFullName="true"
+            app:ccp_showPhoneCode="false"
+            app:ccp_showNameCode="false"/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/codpostalLayout"
@@ -132,7 +148,8 @@
         tools:ignore="MissingConstraints"
         app:layout_constraintTop_toTopOf="@+id/paisLayout"
         app:layout_constraintBottom_toBottomOf="@+id/educacaoLayout"
-        android:gravity="center"
+        android:gravity="left"
+        android:layout_margin="10pt"
         >
 
         <TextView
@@ -155,7 +172,8 @@
         tools:ignore="MissingConstraints"
         app:layout_constraintTop_toTopOf="@+id/codpostalLayout"
         app:layout_constraintBottom_toBottomOf="@+id/tipoDiabetesLayout"
-        android:gravity="center"
+        android:gravity="left"
+        android:layout_margin="10pt"
         >
 
         <TextView
@@ -178,7 +196,8 @@
         tools:ignore="MissingConstraints"
         app:layout_constraintTop_toTopOf="@+id/educacaoLayout"
         app:layout_constraintBottom_toBottomOf="@+id/anoDiagLayout"
-        android:gravity="center"
+        android:gravity="left"
+        android:layout_margin="10pt"
         >
 
         <TextView
@@ -201,7 +220,8 @@
         tools:ignore="MissingConstraints"
         app:layout_constraintTop_toTopOf="@+id/tipoDiabetesLayout"
         app:layout_constraintBottom_toBottomOf="@+id/caregiverLayout"
-        android:gravity="center"
+        android:gravity="left"
+        android:layout_margin="10pt"
         >
 
         <TextView
@@ -225,7 +245,8 @@
         tools:ignore="MissingConstraints"
         app:layout_constraintTop_toTopOf="@+id/anoDiagLayout"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:gravity="center"
+        android:gravity="left"
+        android:layout_margin="10pt"
         >
 
         <TextView
@@ -235,12 +256,10 @@
             android:text="Caregiver: "
             />
 
-        <EditText
-            android:id="@+id/caregiverEditText"
+        <CheckBox
+            android:id="@+id/caregiverCheckBox"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:ems="10" />
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

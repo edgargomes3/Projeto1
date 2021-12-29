@@ -29,8 +29,6 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var editLoginEmail: EditText
     private lateinit var editLoginPassword: EditText
 
-    private val INTERNET_PERMISSION_REQUEST_CODE = 1
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
