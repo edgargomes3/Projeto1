@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.GlycemiaActivity">
+
+    <LinearLayout
+        android:id="@+id/glycemiaValue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/glycemiaTarget"
+        android:gravity="left"
+        android:layout_margin="10pt"
+        >
+
+        <TextView
+            android:id="@+id/glycemiaValueTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Valor Glicémico: "
+            />
+
+        <EditText
+            android:id="@+id/glycemiaValueEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            tools:ignore="TouchTargetSizeCheck" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/glycemiaTarget"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toTopOf="@+id/glycemiaValue"
+        app:layout_constraintBottom_toBottomOf="@+id/glycemiaLimInf"
+        android:gravity="left"
+        android:layout_margin="10pt"
+        >
+
+        <TextView
+            android:id="@+id/glycemiaTargetTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Alvo Glicémico: "
+            />
+
+        <EditText
+            android:id="@+id/glycemiaTargetEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            tools:ignore="TouchTargetSizeCheck" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/glycemiaLimInf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toTopOf="@+id/glycemiaTarget"
+        app:layout_constraintBottom_toBottomOf="@+id/glycemiaLimSup"
+        android:gravity="left"
+        android:layout_margin="10pt"
+        >
+
+        <TextView
+            android:id="@+id/glycemiaLimInfTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Limite Inferior: "
+            />
+
+        <EditText
+            android:id="@+id/glycemiaLimInfEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            tools:ignore="TouchTargetSizeCheck" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/glycemiaLimSup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toTopOf="@+id/glycemiaLimInf"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:gravity="left"
+        android:layout_margin="10pt"
+        >
+
+        <TextView
+            android:id="@+id/glycemiaLimSupTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Limite Superior: "
+            />
+
+        <EditText
+            android:id="@+id/glycemiaLimSupEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            tools:ignore="TouchTargetSizeCheck" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -21,6 +21,7 @@ class RegisterActivity : AppCompatActivity() {
 
     private lateinit var editRegisterEmail: EditText
     private lateinit var editRegisterPassword: EditText
+    private lateinit var editRegisterConfirmPassword: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,17 +29,22 @@ class RegisterActivity : AppCompatActivity() {
 
         editRegisterEmail = findViewById(R.id.editRegisterEmail)
         editRegisterPassword = findViewById(R.id.editRegisterPassword)
+        editRegisterConfirmPassword = findViewById(R.id.editRegisterConfirmPassword)
     }
 
     fun register( view: View) {
         val email = editRegisterEmail.text.toString()
-        val password = editRegisterEmail.text.toString()
+        val password = editRegisterPassword.text.toString()
+        val cpassword = editRegisterConfirmPassword.text.toString()
 
         if ( !email.isValidEmail() ) {
             return Toast.makeText(this@RegisterActivity, R.string.emailEmptyLabel, Toast.LENGTH_LONG).show()
         }
-        else if ( !password.isValidPassword() ) {
+        else if ( !password.isValidPassword() || !cpassword.isValidPassword() ) {
             return Toast.makeText(this@RegisterActivity, R.string.passwordEmptyLabel, Toast.LENGTH_LONG).show()
+        }
+        else if ( !TextUtils.equals( password, cpassword ) ) {
+            return Toast.makeText(this@RegisterActivity, R.string.passwordMatch, Toast.LENGTH_LONG).show()
         }
         else {
 
@@ -59,7 +65,7 @@ class RegisterActivity : AppCompatActivity() {
                         if (c.success) {
                             Toast.makeText(
                                 this@RegisterActivity,
-                                R.string.successLoginLabel,
+                                R.string.successRegisterLabel,
                                 Toast.LENGTH_SHORT
                             ).show()
 
@@ -68,7 +74,7 @@ class RegisterActivity : AppCompatActivity() {
                             finish()
                         } else Toast.makeText(
                             this@RegisterActivity,
-                            R.string.noSuccessLoginLabel,
+                            R.string.noSuccessRegisterLabel,
                             Toast.LENGTH_SHORT
                         ).show()
                     }

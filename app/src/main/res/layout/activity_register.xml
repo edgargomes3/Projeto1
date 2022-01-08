@@ -28,11 +28,25 @@
         android:ems="10"
         android:inputType="textPassword"
         android:hint="@string/passwordExampleLabel"
-        app:layout_constraintBottom_toTopOf="@+id/btnRegister"
+        app:layout_constraintBottom_toBottomOf="@+id/editRegisterConfirmPassword"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@+id/editRegisterEmail"
-        app:layout_constraintVertical_bias="0.25"
+        app:layout_constraintVertical_bias="0.5"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <EditText
+        android:id="@+id/editRegisterConfirmPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:hint="@string/confirmpasswordExampleLabel"
+        app:layout_constraintBottom_toTopOf="@+id/btnRegister"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editRegisterPassword"
+        app:layout_constraintVertical_bias="0.15"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
@@ -40,10 +54,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/registerLabel"
+        android:onClick="register"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/editRegisterPassword"
-        app:layout_constraintVertical_bias="0.65" />
+        app:layout_constraintTop_toTopOf="@+id/editRegisterConfirmPassword"
+        app:layout_constraintVertical_bias="0.8" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

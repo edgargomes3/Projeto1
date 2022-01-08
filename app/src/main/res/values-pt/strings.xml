@@ -8,4 +8,8 @@
     <string name="successLoginLabel">Login efetuado com sucesso!</string>
     <string name="noSuccessLoginLabel">Login falhado!</string>
     <string name="registerLabel">Registar</string>
+    <string name="confirmpasswordExampleLabel">repetir password</string>
+    <string name="passwordMatch">Passwords não são iguais!</string>
+    <string name="successRegisterLabel">Registo efetuado com sucesso!</string>
+    <string name="noSuccessRegisterLabel">Registo falhado!</string>
 </resources>

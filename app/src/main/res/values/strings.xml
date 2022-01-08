@@ -10,4 +10,8 @@
     <string name="successLoginLabel">Login successfully!</string>
     <string name="noSuccessLoginLabel">Login failed!</string>
     <string name="registerLabel">Register</string>
+    <string name="confirmpasswordExampleLabel">repeat password</string>
+    <string name="passwordMatch">Passwords aren\'t the same!</string>
+    <string name="successRegisterLabel">Successfully registered!</string>
+    <string name="noSuccessRegisterLabel">Register failed!</string>
 </resources>

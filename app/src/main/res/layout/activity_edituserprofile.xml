@@ -28,9 +28,9 @@
             android:id="@+id/nomeEditText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
             android:ems="10"
-            />
+            android:inputType="textPersonName"
+            tools:ignore="TouchTargetSizeCheck" />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/dataNascimentoLayout"
@@ -187,7 +187,8 @@
             android:id="@+id/educacaoEditText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10" />
+            android:ems="10"
+            tools:ignore="TouchTargetSizeCheck" />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/tipoDiabetesLayout"

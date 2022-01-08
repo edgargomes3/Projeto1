@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Projeto1">
         <activity
+            android:name=".activity.GlycemiaActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.EditUserProfileActivity"
             android:exported="false" />
         <activity
