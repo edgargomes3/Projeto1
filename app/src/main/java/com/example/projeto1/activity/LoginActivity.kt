@@ -1,6 +1,5 @@
 package com.example.projeto1.activity
 
-import android.R.attr
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,17 +10,14 @@ import android.widget.EditText
 import android.widget.Toast
 import com.example.projeto1.R
 import com.example.projeto1.retrofit.LoginEndPoints
-import com.example.projeto1.retrofit.LoginOutputPost
+import com.example.projeto1.retrofit.LoginOutput
 import com.example.projeto1.retrofit.ServiceBuilder
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.security.MessageDigest
-import android.R.attr.password
-import android.content.pm.PackageManager
-import androidx.core.app.ActivityCompat
-import java.util.regex.Matcher
-import java.util.regex.Pattern
+import android.content.Context
+import android.content.SharedPreferences
 
 
 class LoginActivity : AppCompatActivity() {
@@ -55,13 +51,13 @@ class LoginActivity : AppCompatActivity() {
                 password.sha256()
             )
 
-            call.enqueue(object : Callback<LoginOutputPost> {
+            call.enqueue(object : Callback<LoginOutput> {
                 override fun onResponse(
-                    call: Call<LoginOutputPost>,
-                    response: Response<LoginOutputPost>
+                    call: Call<LoginOutput>,
+                    response: Response<LoginOutput>
                 ) {
                     if (response.isSuccessful) {
-                        val c: LoginOutputPost = response.body()!!
+                        val c: LoginOutput = response.body()!!
 
                         if (c.success) {
                             Toast.makeText(
@@ -69,6 +65,13 @@ class LoginActivity : AppCompatActivity() {
                                 R.string.successLoginLabel,
                                 Toast.LENGTH_SHORT
                             ).show()
+
+                            val sharedPref: SharedPreferences = getSharedPreferences(
+                                getString(R.string.preference_file_key), Context.MODE_PRIVATE )
+                            with ( sharedPref.edit() ) {
+                                putInt(getString(R.string.userProfileId), c.id )
+                                commit()
+                            }
 
                             val intent = Intent(this@LoginActivity, MainActivity::class.java)
                             startActivity(intent)
@@ -81,7 +84,7 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
 
-                override fun onFailure(call: Call<LoginOutputPost>, t: Throwable) {
+                override fun onFailure(call: Call<LoginOutput>, t: Throwable) {
                     Toast.makeText(this@LoginActivity, "${t.message}", Toast.LENGTH_SHORT).show()
                 }
             })

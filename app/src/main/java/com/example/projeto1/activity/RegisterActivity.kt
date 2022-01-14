@@ -10,7 +10,7 @@ import android.widget.EditText
 import android.widget.Toast
 import com.example.projeto1.R
 import com.example.projeto1.retrofit.LoginEndPoints
-import com.example.projeto1.retrofit.LoginOutputPost
+import com.example.projeto1.retrofit.LoginOutput
 import com.example.projeto1.retrofit.ServiceBuilder
 import retrofit2.Call
 import retrofit2.Callback
@@ -54,13 +54,13 @@ class RegisterActivity : AppCompatActivity() {
                 password.sha256()
             )
 
-            call.enqueue(object : Callback<LoginOutputPost> {
+            call.enqueue(object : Callback<LoginOutput> {
                 override fun onResponse(
-                    call: Call<LoginOutputPost>,
-                    response: Response<LoginOutputPost>
+                    call: Call<LoginOutput>,
+                    response: Response<LoginOutput>
                 ) {
                     if (response.isSuccessful) {
-                        val c: LoginOutputPost = response.body()!!
+                        val c: LoginOutput = response.body()!!
 
                         if (c.success) {
                             Toast.makeText(
@@ -80,7 +80,7 @@ class RegisterActivity : AppCompatActivity() {
                     }
                 }
 
-                override fun onFailure(call: Call<LoginOutputPost>, t: Throwable) {
+                override fun onFailure(call: Call<LoginOutput>, t: Throwable) {
                     Toast.makeText(this@RegisterActivity, "${t.message}", Toast.LENGTH_SHORT).show()
                 }
             })

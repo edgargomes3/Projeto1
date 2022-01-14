@@ -6,9 +6,9 @@ import retrofit2.http.*
 interface LoginEndPoints {
     @FormUrlEncoded
     @POST("post/postLogin.php")
-    fun postLogin(@Field("email") email: String, @Field("password") password: String): Call<LoginOutputPost>
+    fun postLogin(@Field("email") email: String, @Field("password") password: String): Call<LoginOutput>
 
     @FormUrlEncoded
     @POST("post/postRegister.php")
-    fun postRegister(@Field("email") email: String, @Field("password") password: String): Call<LoginOutputPost>
+    fun postRegister(@Field("email") email: String, @Field("password") password: String): Call<LoginOutput>
 }

@@ -14,4 +14,6 @@
     <string name="passwordMatch">Passwords aren\'t the same!</string>
     <string name="successRegisterLabel">Successfully registered!</string>
     <string name="noSuccessRegisterLabel">Register failed!</string>
+    <string name="preference_file_key" translatable="false">preference_file_key</string>
+    <string name="userProfileId" translatable="false">userProfileId</string>
 </resources>
