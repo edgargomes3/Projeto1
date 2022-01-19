@@ -16,4 +16,14 @@
     <string name="noSuccessRegisterLabel">Register failed!</string>
     <string name="preference_file_key" translatable="false">preference_file_key</string>
     <string name="userProfileId" translatable="false">userProfileId</string>
+    <string name="emptyNameLabel">Parameter name is empty.</string>
+    <string name="emptyDataNascimentoLabel">Parameter birthday is empty.</string>
+    <string name="emptyAlturaLabel">Parameter height is empty.</string>
+    <string name="emptyGeneroLabel">Parameter genre is empty.</string>
+    <string name="emptyCodPostalLabel">Parameter postal code is empty.</string>
+    <string name="emptyEducacaoLabel">Parameter education is empty.</string>
+    <string name="emptyTipoDiabetesLabel">Parameter type of diabetes is empty.</string>
+    <string name="emptyAnoDiagLabel">Parameter year of diagnosis is empty.</string>
+    <string name="successEditUserProfileSaveLabel">User profile data saved successfully!</string>
+    <string name="failedEditUserProfileSaveLabel">An error ocurred while saving user profile data.</string>
 </resources>

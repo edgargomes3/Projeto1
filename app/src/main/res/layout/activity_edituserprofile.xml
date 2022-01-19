@@ -51,9 +51,13 @@
             />
 
         <EditText
-            android:id="@+id/dataNascimentoRegister"
+            android:id="@+id/dataNascimentoEditText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
             android:inputType="date"
             android:ems="10" />
     </LinearLayout>
@@ -100,19 +104,14 @@
             android:text="Genero: "
             />
 
-        <CheckBox
-            android:id="@+id/generoCheckBox1"
+        <Spinner
+            android:id="@+id/generoSpinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Masculino"
             />
 
-        <CheckBox
-            android:id="@+id/generoCheckBox2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Feminino"
-            />
+
     </LinearLayout>
     <LinearLayout
         android:id="@+id/paisLayout"
@@ -183,11 +182,10 @@
             android:text="Educação: "
             />
 
-        <EditText
-            android:id="@+id/educacaoEditText"
+        <Spinner
+            android:id="@+id/educacaoSpinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10"
             tools:ignore="TouchTargetSizeCheck" />
     </LinearLayout>
     <LinearLayout
@@ -208,8 +206,8 @@
             android:text="Tipo Diabetes: "
             />
 
-        <EditText
-            android:id="@+id/tipoDiabetesEditText"
+        <Spinner
+            android:id="@+id/tipoDiabetesSpinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10" />

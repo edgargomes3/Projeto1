@@ -6,6 +6,9 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.CheckBox
+import android.widget.EditText
+import android.widget.Spinner
 import android.widget.Toast
 import com.example.projeto1.R
 import com.example.projeto1.retrofit.*
@@ -14,6 +17,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.maintenance)

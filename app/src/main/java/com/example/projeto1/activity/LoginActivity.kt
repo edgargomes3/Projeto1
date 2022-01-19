@@ -94,7 +94,6 @@ class LoginActivity : AppCompatActivity() {
     fun register( view: View ) {
         val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
         startActivity(intent)
-        finish()
     }
 
     private fun String.isEmpty(): Boolean {

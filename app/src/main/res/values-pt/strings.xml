@@ -12,4 +12,14 @@
     <string name="passwordMatch">Passwords não são iguais!</string>
     <string name="successRegisterLabel">Registo efetuado com sucesso!</string>
     <string name="noSuccessRegisterLabel">Registo falhado!</string>
+    <string name="emptyNameLabel">Parâmetro nome está vazio.</string>
+    <string name="emptyDataNascimentoLabel">Parâmetro data de nascimento está vazio.</string>
+    <string name="emptyAlturaLabel">Parâmetro altura está vazio.</string>
+    <string name="emptyGeneroLabel">Parâmetro género está vazio.</string>
+    <string name="emptyCodPostalLabel">Parâmetro código postal está vazio.</string>
+    <string name="emptyEducacaoLabel">Parâmetro educação está vazio.</string>
+    <string name="emptyTipoDiabetesLabel">Parâmetro tipo de diabetes está vazio.</string>
+    <string name="emptyAnoDiagLabel">Parâmetro ano de diagnóstico está vazio.</string>
+    <string name="successEditUserProfileSaveLabel">Dados do perfil do utilizador guardados com sucesso!</string>
+    <string name="failedEditUserProfileSaveLabel">Ocorreu um erro ao guardar os dados de perfil do usuário.</string>
 </resources>
