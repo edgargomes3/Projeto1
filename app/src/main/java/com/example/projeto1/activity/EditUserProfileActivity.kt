@@ -22,18 +22,23 @@ import android.app.DatePickerDialog.OnDateSetListener
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.core.view.get
+import com.example.projeto1.dataclass.UserProfileData
 import com.example.projeto1.retrofit.UserProfileOutput
 
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+import android.widget.ArrayAdapter
+
+
+
 
 
 class EditUserProfileActivity : AppCompatActivity(), CountryCodePicker.OnCountryChangeListener {
 
-    private var ccp:CountryCodePicker?=null
-    private var countryCode:String?=null
-    private var countryName:String?=null
+    private lateinit var ccp: CountryCodePicker
+    private var userProfileId: Int = -1
+
     private lateinit var nomeEditText: EditText
     private lateinit var dataNascimentoEditText: EditText
     private lateinit var alturaEditText: EditText
@@ -45,7 +50,10 @@ class EditUserProfileActivity : AppCompatActivity(), CountryCodePicker.OnCountry
     private lateinit var caregiverCheckBox: CheckBox
     val myCalendar: Calendar = Calendar.getInstance()
 
-    private lateinit var adapter: ArrayAdapter<String>
+    private lateinit var generoadapter: ArrayAdapter<String>
+    private lateinit var tipoDiabetesadapter: ArrayAdapter<String>
+    private lateinit var educacaoadapter: ArrayAdapter<String>
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,6 +72,14 @@ class EditUserProfileActivity : AppCompatActivity(), CountryCodePicker.OnCountry
         anoDiagEditText = findViewById(R.id.anoDiagEditText)
         caregiverCheckBox = findViewById(R.id.caregiverCheckBox)
 
+        val sharedPref: SharedPreferences = getSharedPreferences(
+            getString(R.string.preference_file_key), Context.MODE_PRIVATE )
+
+        userProfileId = sharedPref.getInt(getString(R.string.userProfileId), -1)
+
+        val intent = intent
+        val dataempty = intent.getBooleanExtra(EXTRA_EMPTY, false)
+
         var educacao = ArrayList<String>()
         educacao.add( "<Escolha uma Opção>" )
 
@@ -71,15 +87,15 @@ class EditUserProfileActivity : AppCompatActivity(), CountryCodePicker.OnCountry
         genero.add( "<Escolha uma Opção>" )
         genero.add( "Masculino" )
         genero.add( "Feminino" )
-        adapter = ArrayAdapter(this@EditUserProfileActivity, android.R.layout.simple_spinner_item, genero )
-        generoSpinner.adapter = adapter
+        generoadapter = ArrayAdapter(this@EditUserProfileActivity, android.R.layout.simple_spinner_item, genero )
+        generoSpinner.adapter = generoadapter
 
         var tipoDiabetes = ArrayList<String>()
         tipoDiabetes.add( "<Escolha uma Opção>" )
         tipoDiabetes.add( "Diabetes Tipo #1" )
         tipoDiabetes.add( "Diabetes Tipo #2" )
-        adapter = ArrayAdapter(this@EditUserProfileActivity, android.R.layout.simple_spinner_item, tipoDiabetes )
-        tipoDiabetesSpinner.adapter = adapter
+        tipoDiabetesadapter = ArrayAdapter(this@EditUserProfileActivity, android.R.layout.simple_spinner_item, tipoDiabetes )
+        tipoDiabetesSpinner.adapter = tipoDiabetesadapter
 
         val date =
             OnDateSetListener { view, year, month, day ->
@@ -99,37 +115,87 @@ class EditUserProfileActivity : AppCompatActivity(), CountryCodePicker.OnCountry
             ).show()
         })
 
-        ccp!!.setDefaultCountryUsingNameCode("PT")
+        if( !dataempty ) {
+            val request = ServiceBuilder.buildService(UserProfileEndPoints::class.java)
+            val call1 = request.getUserProfile(
+                userProfileId
+            )
 
-        val request = ServiceBuilder.buildService(UserProfileEndPoints::class.java)
-        val call = request.getEducacoes()
+            call1.enqueue(object : Callback<UserProfileData> {
+                override fun onResponse(call: Call<UserProfileData>, response: Response<UserProfileData>) {
+                    if (response.isSuccessful) {
+                        val c = response.body()!!
 
-        call.enqueue(object : Callback<List<Educacao>> {
-            override fun onResponse(call: Call<List<Educacao>>, response: Response<List<Educacao>>) {
-                if (response.isSuccessful) {
-                    val c = response.body()!!
-                    //var tipoProblemaIndex = -1
+                        nomeEditText.setText("${c.name}")
+                        dataNascimentoEditText.setText("${c.birthDate}")
+                        alturaEditText.setText("${c.height}")
 
-                    for( result in c ) {
-                        educacao.add("${result.description} - ${result.id_education}")
-                        /*if( educacaoEditText.tag != null ) {
-                            if (TextUtils.equals(tipo.tipo.toString(), educacaoEditText.tag.toString())) {
-                                tipoProblemaIndex = educacao.lastIndex
+                        var spinnerPosition = generoadapter.getPosition(c.gender)
+                        generoSpinner.setSelection(spinnerPosition)
+
+                        ccp!!.setCountryForNameCode(c.country)
+
+                        codpostalEditText.setText("${c.postalCode}")
+
+                        spinnerPosition = tipoDiabetesadapter.getPosition(c.typeDiabetes)
+                        tipoDiabetesSpinner.setSelection(spinnerPosition)
+
+                        anoDiagEditText.setText("${c.diagnosis_year}")
+                        caregiverCheckBox.isChecked = c.isCaregiver
+
+                        val call2 = request.getEducacoes()
+
+                        call2.enqueue(object : Callback<List<Educacao>> {
+                            override fun onResponse(call: Call<List<Educacao>>, response: Response<List<Educacao>>) {
+                                if (response.isSuccessful) {
+                                    val d = response.body()!!
+
+                                    for( result in d ) {
+                                        educacao.add("${result.description} - ${result.id_education}")
+                                    }
+
+                                    educacaoadapter = ArrayAdapter(this@EditUserProfileActivity, android.R.layout.simple_spinner_item, educacao )
+                                    educacaoSpinner.adapter = educacaoadapter
+
+                                    educacaoSpinner.setSelection(c.education+1)
+                                }
                             }
-                        }*/
+
+                            override fun onFailure(call: Call<List<Educacao>>, t: Throwable) {
+                                Toast.makeText(this@EditUserProfileActivity, "${t.message}", Toast.LENGTH_SHORT).show()
+                            }
+                        })
                     }
-
-                    adapter = ArrayAdapter(this@EditUserProfileActivity, android.R.layout.simple_spinner_item, educacao )
-                    educacaoSpinner.adapter = adapter
-
-                    //if( tipoProblemaIndex > -1 ) educacaoEditText.setSelection(tipoProblemaIndex)
                 }
-            }
 
-            override fun onFailure(call: Call<List<Educacao>>, t: Throwable) {
-                Toast.makeText(this@EditUserProfileActivity, "${t.message}", Toast.LENGTH_SHORT).show()
-            }
-        })
+                override fun onFailure(call: Call<UserProfileData>, t: Throwable) {
+                    Toast.makeText(this@EditUserProfileActivity, "${t.message}", Toast.LENGTH_SHORT).show()
+                }
+            })
+        }
+        else {
+            val request = ServiceBuilder.buildService(UserProfileEndPoints::class.java)
+            val call = request.getEducacoes()
+
+            call.enqueue(object : Callback<List<Educacao>> {
+                override fun onResponse(call: Call<List<Educacao>>, response: Response<List<Educacao>>) {
+                    if (response.isSuccessful) {
+                        val c = response.body()!!
+
+                        for( result in c ) {
+                            educacao.add("${result.description} - ${result.id_education}")
+                        }
+
+                        educacaoadapter = ArrayAdapter(this@EditUserProfileActivity, android.R.layout.simple_spinner_item, educacao )
+                        educacaoSpinner.adapter = educacaoadapter
+                    }
+                }
+
+                override fun onFailure(call: Call<List<Educacao>>, t: Throwable) {
+                    Toast.makeText(this@EditUserProfileActivity, "${t.message}", Toast.LENGTH_SHORT).show()
+                }
+            })
+        }
     }
 
     private fun updateLabel() {
@@ -194,11 +260,6 @@ class EditUserProfileActivity : AppCompatActivity(), CountryCodePicker.OnCountry
             return
         }
         else {
-            val sharedPref: SharedPreferences = getSharedPreferences(
-                getString(R.string.preference_file_key), Context.MODE_PRIVATE )
-
-            val userProfileId = sharedPref.getInt(getString(R.string.userProfileId), -1)
-
             val request = ServiceBuilder.buildService(UserProfileEndPoints::class.java)
             val call = request.saveProfile(
                 userProfileId,
@@ -207,7 +268,7 @@ class EditUserProfileActivity : AppCompatActivity(), CountryCodePicker.OnCountry
                 alturaEditText.text.toString().toInt(),
                 generoSpinner.selectedItem.toString(),
                 codpostalEditText.text.toString(),
-                countryCode.toString(),
+                ccp!!.selectedCountryNameCode,
                 educacaoSpinner.selectedItemPosition-1,
                 tipoDiabetesSpinner.selectedItem.toString(),
                 anoDiagEditText.text.toString().toInt(),
@@ -239,7 +300,9 @@ class EditUserProfileActivity : AppCompatActivity(), CountryCodePicker.OnCountry
     }
 
     override fun onCountrySelected() {
-        countryCode=ccp!!.selectedCountryNameCode
-        countryName=ccp!!.selectedCountryName
+    }
+
+    companion object {
+        const val EXTRA_EMPTY = "com.example.projeto1.activity.EXTRA_EMPTY"
     }
 }

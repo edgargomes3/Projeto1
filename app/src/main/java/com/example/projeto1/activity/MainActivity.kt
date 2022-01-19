@@ -42,6 +42,7 @@ class MainActivity : AppCompatActivity() {
 
                         if (c.success) {
                             val intent = Intent(this@MainActivity, EditUserProfileActivity::class.java)
+                            intent.putExtra( EditUserProfileActivity.EXTRA_EMPTY, true);
                             startActivity(intent)
                             finish()
                         }

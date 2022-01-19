@@ -1,16 +1,15 @@
 package com.example.projeto1.dataclass
 
 data class UserProfileData(
-    val id_education: Int,
+    val id_userProfile: Int,
     val name: String,
     val birthDate: String,
-    val gender,
-    val typeDiabetes,
-    val country,
-    val diagnosis_year,
-    val isCaregiver,
-    val height,
-    val postalCode,
-    val education
-    ,
+    val gender: String,
+    val typeDiabetes: String,
+    val country: String,
+    val diagnosis_year: Int,
+    val isCaregiver: Boolean,
+    val height: Int,
+    val postalCode: String,
+    val education: Int,
 )

@@ -136,6 +136,7 @@
             android:id="@+id/ccp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:ccp_defaultNameCode="PT"
             app:ccp_showFullName="true"
             app:ccp_showPhoneCode="false"
             app:ccp_showNameCode="false"/>

@@ -1,6 +1,7 @@
 package com.example.projeto1.retrofit
 
 import com.example.projeto1.dataclass.Educacao
+import com.example.projeto1.dataclass.UserProfileData
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -29,7 +30,7 @@ interface UserProfileEndPoints {
 
     @FormUrlEncoded
     @POST("post/getProfile.php")
-    fun getUserProfile(@Field("identifier") identifier: Int): Call<UserProfileOutput>
+    fun getUserProfile(@Field("identifier") identifier: Int): Call<UserProfileData>
 
     @GET("get/getEducacao.php")
     fun getEducacoes(): Call<List<Educacao>>
