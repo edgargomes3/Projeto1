@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity() {
                     getString(R.string.preference_file_key), Context.MODE_PRIVATE )
                 with ( sharedPref.edit() ) {
                     putInt(getString(R.string.userProfileId), -1 )
-                    putBoolean(getString(R.string.userProfileId), false)
+                    putBoolean(getString(R.string.userAutoLogin), false)
                     commit()
                 }
 

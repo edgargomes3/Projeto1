@@ -85,7 +85,7 @@ class LoginActivity : AppCompatActivity() {
                             with ( sharedPref.edit() ) {
                                 putInt(getString(R.string.userProfileId), c.id )
                                 if( autoLoginCheckbox.isChecked ) {
-                                    putBoolean(getString(R.string.userProfileId), true)
+                                    putBoolean(getString(R.string.userAutoLogin), true)
                                 }
                                 commit()
                             }
