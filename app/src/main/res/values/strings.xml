@@ -26,4 +26,6 @@
     <string name="emptyAnoDiagLabel">Parameter year of diagnosis is empty.</string>
     <string name="successEditUserProfileSaveLabel">User profile data saved successfully!</string>
     <string name="failedEditUserProfileSaveLabel">An error ocurred while saving user profile data.</string>
+    <string name="remindMe">Remind Login</string>
+    <string name="userAutoLogin" translatable="false">userAutoLogin</string>
 </resources>

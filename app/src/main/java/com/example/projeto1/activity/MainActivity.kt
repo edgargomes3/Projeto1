@@ -5,6 +5,9 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.widget.CheckBox
 import android.widget.EditText
@@ -56,9 +59,43 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun edit( view: View ) {
-        val intent = Intent(this@MainActivity, EditUserProfileActivity::class.java)
-        startActivity(intent)
-        finish()
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.new_main_btn -> {
+                true
+            }
+            R.id.icr_main_btn -> {
+                true
+            }
+            R.id.isf_main_btn -> {
+                true
+            }
+            R.id.profile_main_btn -> {
+                val intent = Intent(this@MainActivity, EditUserProfileActivity::class.java)
+                startActivity(intent)
+                true
+            }
+            R.id.logout_main_btn -> {
+                val sharedPref: SharedPreferences = getSharedPreferences(
+                    getString(R.string.preference_file_key), Context.MODE_PRIVATE )
+                with ( sharedPref.edit() ) {
+                    putInt(getString(R.string.userProfileId), -1 )
+                    putBoolean(getString(R.string.userProfileId), false)
+                    commit()
+                }
+
+                val intent = Intent(this@MainActivity, LoginActivity::class.java)
+                startActivity(intent)
+                finish()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }

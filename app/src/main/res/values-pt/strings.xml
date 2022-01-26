@@ -22,4 +22,5 @@
     <string name="emptyAnoDiagLabel">Parâmetro ano de diagnóstico está vazio.</string>
     <string name="successEditUserProfileSaveLabel">Dados do perfil do utilizador guardados com sucesso!</string>
     <string name="failedEditUserProfileSaveLabel">Ocorreu um erro ao guardar os dados de perfil do usuário.</string>
+    <string name="remindMe">Relembrar Login</string>
 </resources>

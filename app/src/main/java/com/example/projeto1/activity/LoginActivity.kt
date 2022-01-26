@@ -18,12 +18,15 @@ import retrofit2.Response
 import java.security.MessageDigest
 import android.content.Context
 import android.content.SharedPreferences
+import android.widget.CheckBox
+import com.example.projeto1.retrofit.UserProfileEndPoints
 
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var editLoginEmail: EditText
     private lateinit var editLoginPassword: EditText
+    private lateinit var autoLoginCheckbox: CheckBox
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +34,17 @@ class LoginActivity : AppCompatActivity() {
 
         editLoginEmail = findViewById(R.id.editLoginEmail)
         editLoginPassword = findViewById(R.id.editLoginPassword)
+        autoLoginCheckbox = findViewById(R.id.autoLoginCheckbox)
+
+        val sharedPref: SharedPreferences = getSharedPreferences(
+            getString(R.string.preference_file_key), Context.MODE_PRIVATE )
+
+        val userAutoLogin = sharedPref.getBoolean(getString(R.string.userAutoLogin), false)
+        if( userAutoLogin ) {
+            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     fun login( view: View ) {
@@ -70,6 +84,9 @@ class LoginActivity : AppCompatActivity() {
                                 getString(R.string.preference_file_key), Context.MODE_PRIVATE )
                             with ( sharedPref.edit() ) {
                                 putInt(getString(R.string.userProfileId), c.id )
+                                if( autoLoginCheckbox.isChecked ) {
+                                    putBoolean(getString(R.string.userProfileId), true)
+                                }
                                 commit()
                             }
 
