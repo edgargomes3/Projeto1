@@ -23,4 +23,8 @@
     <string name="successEditUserProfileSaveLabel">Dados do perfil do utilizador guardados com sucesso!</string>
     <string name="failedEditUserProfileSaveLabel">Ocorreu um erro ao guardar os dados de perfil do usuário.</string>
     <string name="remindMe">Relembrar Login</string>
+    <string name="saveLabel">Guardar</string>
+    <string name="valueEmptyLabel">Parâmetro valor está vazio.</string>
+    <string name="errorOcurredLabel">Ocorreu um erro, tente novamente mais tarde.</string>
+    <string name="valueSavedLabel">Valor guardado com sucesso.</string>
 </resources>

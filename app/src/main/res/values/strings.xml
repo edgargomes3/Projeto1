@@ -28,4 +28,8 @@
     <string name="failedEditUserProfileSaveLabel">An error ocurred while saving user profile data.</string>
     <string name="remindMe">Remind Login</string>
     <string name="userAutoLogin" translatable="false">userAutoLogin</string>
+    <string name="saveLabel">Save</string>
+    <string name="valueEmptyLabel">Parameter value is empty.</string>
+    <string name="errorOcurredLabel">An error as ocurred, try again later.</string>
+    <string name="valueSavedLabel">Value saved successfully.</string>
 </resources>

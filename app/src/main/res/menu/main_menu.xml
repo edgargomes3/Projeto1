@@ -12,12 +12,12 @@
     <item
         android:id="@+id/icr_main_btn"
         app:showAsAction="never"
-        android:title="Alterar ICR"
+        android:title="Submeter ICR"
         />
     <item
         android:id="@+id/isf_main_btn"
         app:showAsAction="never"
-        android:title="Alterar ISF"
+        android:title="Submeter ISF"
         />
     <item
         android:id="@+id/profile_main_btn"
