@@ -13,4 +13,12 @@ interface ValuesEndPoints {
     @FormUrlEncoded
     @POST("post/postISF.php")
     fun postISF(@Field("identifier") identifier: Int, @Field("value") value: Int): Call<ValuesOutput>
+
+    @FormUrlEncoded
+    @POST("post/getICR.php")
+    fun getICR(@Field("identifier") identifier: Int): Call<ICROutput>
+
+    @FormUrlEncoded
+    @POST("post/getISF.php")
+    fun getISF(@Field("identifier") identifier: Int): Call<ISFOutput>
 }

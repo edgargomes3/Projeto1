@@ -16,6 +16,8 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
+    private var icr: Int = 0
+    private var isf: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,32 +28,9 @@ class MainActivity : AppCompatActivity() {
 
         val userProfileId = sharedPref.getInt(getString(R.string.userProfileId), -1)
         if( userProfileId != -1 ) {
-            val request = ServiceBuilder.buildService(UserProfileEndPoints::class.java)
-            val call = request.checkEmptyUserProfile(
-                userProfileId
-            )
-
-            call.enqueue(object : Callback<UserProfileOutput> {
-                override fun onResponse(
-                    call: Call<UserProfileOutput>,
-                    response: Response<UserProfileOutput>
-                ) {
-                    if (response.isSuccessful) {
-                        val c: UserProfileOutput = response.body()!!
-
-                        if (c.success) {
-                            val intent = Intent(this@MainActivity, EditUserProfileActivity::class.java)
-                            intent.putExtra( EditUserProfileActivity.EXTRA_EMPTY, true);
-                            startActivity(intent)
-                            finish()
-                        }
-                    }
-                }
-
-                override fun onFailure(call: Call<UserProfileOutput>, t: Throwable) {
-                    Toast.makeText(this@MainActivity, "${t.message}", Toast.LENGTH_SHORT).show()
-                }
-            })
+            checkUserProfile( userProfileId )
+            getICR( userProfileId )
+            getISF( userProfileId )
         }
     }
 
@@ -67,11 +46,11 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             R.id.icr_main_btn -> {
-                showCustomDialog( "Submeter ICR" )
+                showCustomDialog( "ICR" )
                 true
             }
             R.id.isf_main_btn -> {
-                showCustomDialog( "Submeter ISF" )
+                showCustomDialog( "ISF" )
                 true
             }
             R.id.profile_main_btn -> {
@@ -107,7 +86,13 @@ class MainActivity : AppCompatActivity() {
         val dialogEditText = dialog.findViewById<EditText>(R.id.dialogEditText)
         val dialog_btn = dialog.findViewById<Button>(R.id.dialog_btn)
 
-        dialogTitle.text = title
+        dialogTitle.text = "Submeter ${title}"
+        if( TextUtils.equals( "ICR", title ) ) {
+            if( icr != 0 ) dialogEditText.hint = "Valor Atual: $icr"
+        }
+        else {
+            if( isf != 0 ) dialogEditText.hint = "Valor Atual: $isf"
+        }
 
         dialog_btn.setOnClickListener{
             var valor = dialogEditText.text.toString()
@@ -125,7 +110,7 @@ class MainActivity : AppCompatActivity() {
                 val userProfileId = sharedPref.getInt(getString(R.string.userProfileId), -1)
 
                 val request = ServiceBuilder.buildService(ValuesEndPoints::class.java)
-                if( TextUtils.equals( "Submeter ICR", title ) ) {
+                if( TextUtils.equals( "ICR", title ) ) {
                     call = request.postICR(
                         userProfileId,
                         valorInt
@@ -162,5 +147,83 @@ class MainActivity : AppCompatActivity() {
         }
 
         dialog.show()
+    }
+
+    fun checkUserProfile( identifier: Int ) {
+        val request = ServiceBuilder.buildService(UserProfileEndPoints::class.java)
+        val call = request.checkEmptyUserProfile(
+            identifier
+        )
+
+        call.enqueue(object : Callback<UserProfileOutput> {
+            override fun onResponse(
+                call: Call<UserProfileOutput>,
+                response: Response<UserProfileOutput>
+            ) {
+                if (response.isSuccessful) {
+                    val c: UserProfileOutput = response.body()!!
+
+                    if (c.success) {
+                        val intent = Intent(this@MainActivity, EditUserProfileActivity::class.java)
+                        intent.putExtra( EditUserProfileActivity.EXTRA_EMPTY, true);
+                        startActivity(intent)
+                        finish()
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<UserProfileOutput>, t: Throwable) {
+                Toast.makeText(this@MainActivity, "${t.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    fun getICR( identifier: Int ) {
+        val request = ServiceBuilder.buildService(ValuesEndPoints::class.java)
+        val call = request.getICR(
+            identifier
+        )
+
+        call.enqueue(object : Callback<ICROutput> {
+            override fun onResponse(call: Call<ICROutput>, response: Response<ICROutput>) {
+                if (response.isSuccessful) {
+                    val c: ICROutput = response.body()!!
+
+                    if (c.icr_value != 0) {
+                        icr = c.icr_value
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<ICROutput>, t: Throwable) {
+                Toast.makeText(this@MainActivity, "${t.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    fun getISF( identifier: Int ) {
+        val request = ServiceBuilder.buildService(ValuesEndPoints::class.java)
+        val call = request.getISF(
+            identifier
+        )
+
+        call.enqueue(object : Callback<ISFOutput> {
+            override fun onResponse(
+                call: Call<ISFOutput>,
+                response: Response<ISFOutput>
+            ) {
+                if (response.isSuccessful) {
+                    val c: ISFOutput = response.body()!!
+
+                    if (c.isf_value != 0) {
+                        isf = c.isf_value
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<ISFOutput>, t: Throwable) {
+                Toast.makeText(this@MainActivity, "${t.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 }
