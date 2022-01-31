@@ -32,4 +32,6 @@
     <string name="valueEmptyLabel">Parameter value is empty.</string>
     <string name="errorOcurredLabel">An error as ocurred, try again later.</string>
     <string name="valueSavedLabel">Value saved successfully.</string>
+    <string name="emptyCHOLabel">Parameter CHO is empty.</string>
+    <string name="emptyGlicemiaLabel">Parameter glycemia is empty.</string>
 </resources>

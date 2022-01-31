@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    app:flow_verticalAlign="center"
+    tools:context=".activity.BolusActivity">
+
+    <LinearLayout
+        android:id="@+id/errorLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/CHOLayout"
+        android:gravity="center"
+        android:layout_margin="10pt"
+        >
+
+        <TextView
+            android:id="@+id/maxCHOErrorLabelTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Erro Máximo de CHO: "
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/maxCHOErrorTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/CHOLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toBottomOf="@+id/errorLayout"
+        app:layout_constraintBottom_toBottomOf="@+id/GlicemiaLayout"
+        android:gravity="center"
+        android:layout_margin="10pt"
+        >
+
+        <TextView
+            android:id="@+id/CHOTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CHO: "
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/CHOEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:ems="10" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/GlicemiaLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toBottomOf="@+id/CHOLayout"
+        app:layout_constraintBottom_toTopOf="@+id/CalculateLayout"
+        android:gravity="center"
+        android:layout_margin="10pt"
+        >
+
+        <TextView
+            android:id="@+id/GlicemiaTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Glicemia: "
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/GlicemiaEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/CalculateLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toBottomOf="@+id/GlicemiaLayout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:gravity="center"
+        android:layout_margin="10pt"
+        >
+
+        <Button
+            android:id="@+id/calculate_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Calcular"
+            android:onClick="calculateBolus"
+            />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

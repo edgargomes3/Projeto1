@@ -21,4 +21,12 @@ interface ValuesEndPoints {
     @FormUrlEncoded
     @POST("post/getISF.php")
     fun getISF(@Field("identifier") identifier: Int): Call<ISFOutput>
+
+    @FormUrlEncoded
+    @POST("post/getErrorCHO.php")
+    fun getErrorCHO(@Field("identifier") identifier: Int): Call<ErrorCHOOutput>
+
+    @FormUrlEncoded
+    @POST("post/postBolus.php")
+    fun postBolus(@Field("identifier") identifier: Int, @Field("cho") cho: Int, @Field("glicemia") glicemia: Int, @Field("error") error: Float): Call<BolusOutput>
 }

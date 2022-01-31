@@ -42,7 +42,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.new_main_btn -> {
+            R.id.bolus_main_btn -> {
+                val intent = Intent(this@MainActivity, BolusActivity::class.java)
+                startActivity(intent)
+                finish()
+                true
+            }
+            R.id.glicemia_main_btn -> {
                 true
             }
             R.id.icr_main_btn -> {

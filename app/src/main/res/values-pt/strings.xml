@@ -27,4 +27,6 @@
     <string name="valueEmptyLabel">Parâmetro valor está vazio.</string>
     <string name="errorOcurredLabel">Ocorreu um erro, tente novamente mais tarde.</string>
     <string name="valueSavedLabel">Valor guardado com sucesso.</string>
+    <string name="emptyCHOLabel">Parâmetro CHO está vazio.</string>
+    <string name="emptyGlicemiaLabel">Parâmetro glicemia está vazio.</string>
 </resources>

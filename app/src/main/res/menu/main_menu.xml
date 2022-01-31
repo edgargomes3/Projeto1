@@ -6,8 +6,14 @@
         android:id="@+id/new_main_btn"
         android:icon="@drawable/ic_baseline_add_24"
         app:showAsAction="ifRoom"
-        android:title=""
-        />
+        android:title="">
+        <menu>
+            <item android:id="@+id/bolus_main_btn"
+                android:title="Calcular Bolus" />
+            <item android:id="@+id/glicemia_main_btn"
+                android:title="Submeter Glicemia" />
+        </menu>
+    </item>
 
     <item
         android:id="@+id/icr_main_btn"
