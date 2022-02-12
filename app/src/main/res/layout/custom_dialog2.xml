@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="16dp">
+
+    <TextView
+        android:id="@+id/dialogTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Alterar Parâmetros"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        tools:ignore="MissingConstraints" />
+
+    <LinearLayout
+        android:id="@+id/glycemiaLimitInf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toBottomOf="@+id/dialogTitle"
+        android:gravity="center"
+        >
+
+        <TextView
+            android:id="@+id/glycemiaLimitInfTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Limite Inferior: " />
+
+        <EditText
+            android:id="@+id/glycemiaLimitInfEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/glycemiaLimitSup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toBottomOf="@+id/glycemiaLimitInf"
+        android:gravity="center"
+        >
+
+        <TextView
+            android:id="@+id/glycemiaLimitSupTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Limite Superior: " />
+
+        <EditText
+            android:id="@+id/glycemiaLimitSupEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/glycemiaTarget"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toBottomOf="@+id/glycemiaLimitSup"
+        android:gravity="center"
+        >
+
+        <TextView
+            android:id="@+id/glycemiaTargetTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Alvo Glicémico: " />
+
+        <EditText
+            android:id="@+id/glycemiaTargetEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number" />
+    </LinearLayout>
+    <Button
+        android:id="@+id/dialog2_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/saveLabel"
+        app:layout_constraintTop_toBottomOf="@+id/glycemiaTarget"
+        app:layout_constraintEnd_toEndOf="@+id/glycemiaTarget"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

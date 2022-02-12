@@ -5,7 +5,9 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
 import android.text.TextUtils
+import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
 import android.widget.Spinner
@@ -23,6 +25,12 @@ class BolusActivity : AppCompatActivity() {
     private lateinit var CHOEditText: EditText
     private lateinit var GlicemiaEditText: EditText
 
+    private var userID: Int = -1
+
+    private var limit_inf: Int = -1
+    private var limit_sup: Int = -1
+    private var target: Int = -1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bolus)
@@ -31,20 +39,27 @@ class BolusActivity : AppCompatActivity() {
         CHOEditText = findViewById(R.id.CHOEditText)
         GlicemiaEditText = findViewById(R.id.GlicemiaEditText)
 
+        val intent = intent
+        limit_inf = intent.getIntExtra(EXTRA_INF, -1)
+        limit_sup = intent.getIntExtra(EXTRA_SUP, -1)
+        target = intent.getIntExtra(EXTRA_TARGET, -1)
+
         val sharedPref: SharedPreferences = getSharedPreferences(
             getString(R.string.preference_file_key), Context.MODE_PRIVATE )
 
-        val userProfileId = sharedPref.getInt(getString(R.string.userProfileId), -1)
-        if( userProfileId != -1 ) {
-            getErrorCHO( userProfileId )
-            maxCHOErrorTextView.tag = userProfileId
+        userID = sharedPref.getInt(getString(R.string.userProfileId), -1)
+        if( userID != -1 ) {
+            getErrorCHO( userID )
         }
     }
 
     fun getErrorCHO( identifier: Int ) {
         val request = ServiceBuilder.buildService(ValuesEndPoints::class.java)
         val call = request.getErrorCHO(
-            identifier
+            identifier,
+            limit_inf,
+            limit_sup,
+            target
         )
 
         call.enqueue(object : Callback<ErrorCHOOutput> {
@@ -79,9 +94,10 @@ class BolusActivity : AppCompatActivity() {
         else {
             val request = ServiceBuilder.buildService(ValuesEndPoints::class.java)
             val call = request.postBolus(
-                maxCHOErrorTextView.tag.toString().toInt(),
+                userID,
                 CHOEditText.text.toString().toInt(),
                 GlicemiaEditText.text.toString().toInt(),
+                target,
                 maxCHOErrorTextView.text.toString().toFloat()
             )
 
@@ -108,5 +124,11 @@ class BolusActivity : AppCompatActivity() {
                 }
             })
         }
+    }
+
+    companion object {
+        const val EXTRA_INF = "com.example.projeto1.activity.bolusactivity.EXTRA_INF"
+        const val EXTRA_SUP = "com.example.projeto1.activity.bolusactivity.EXTRA_SUP"
+        const val EXTRA_TARGET = "com.example.projeto1.activity.bolusactivity.EXTRA_TARGET"
     }
 }

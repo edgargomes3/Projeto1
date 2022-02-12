@@ -16,6 +16,11 @@
     </item>
 
     <item
+        android:id="@+id/glicemiapar_main_btn"
+        app:showAsAction="never"
+        android:title="Alterar Limites Glicemia"
+        />
+    <item
         android:id="@+id/icr_main_btn"
         app:showAsAction="never"
         android:title="Submeter ICR"

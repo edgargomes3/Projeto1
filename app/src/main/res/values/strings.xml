@@ -34,4 +34,9 @@
     <string name="valueSavedLabel">Value saved successfully.</string>
     <string name="emptyCHOLabel">Parameter CHO is empty.</string>
     <string name="emptyGlicemiaLabel">Parameter glycemia is empty.</string>
+    <string name="emptyGlicemiaTargetLabel">Parameter glycemia target is empty.</string>
+    <string name="limit_sup" translatable="false">limit_sup</string>
+    <string name="limit_inf" translatable="false">limit_inf</string>
+    <string name="target" translatable="false">target</string>
+    <string name="allParameterEmptyLabel">At least one parameter must have a value.</string>
 </resources>
