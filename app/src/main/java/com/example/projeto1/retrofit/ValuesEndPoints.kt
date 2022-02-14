@@ -33,4 +33,8 @@ interface ValuesEndPoints {
     @FormUrlEncoded
     @POST("post/postGlicemia.php")
     fun postGlicemia(@Field("identifier") identifier: Int, @Field("value") value: Int, @Field("inf") inf: Int, @Field("sup") sup: Int, @Field("target") target: Int): Call<ValuesOutput>
+
+    @FormUrlEncoded
+    @POST("post/getGlicemia.php")
+    fun getGlicemia(@Field("identifier") identifier: Int): Call<List<GlicemiaOutput>>
 }

@@ -4,19 +4,46 @@ import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Color
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.*
 import android.widget.*
+import androidx.annotation.RequiresApi
+import androidx.constraintlayout.motion.utils.Easing
 import com.example.projeto1.R
+import com.example.projeto1.dataclass.Glicemia
 import com.example.projeto1.retrofit.*
+import com.github.mikephil.charting.animation.Easing.EaseInExpo
+import com.github.mikephil.charting.animation.Easing.EaseInSine
+import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.components.AxisBase
+import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
+import com.github.mikephil.charting.formatter.IAxisValueFormatter
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
+import com.github.mikephil.charting.formatter.ValueFormatter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.time.Instant
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+import java.util.*
+import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
     private var userProfileId: Int = -1
+
+    private lateinit var lineChart: LineChart
 
     private var icr: Int = 0
     private var isf: Int = 0
@@ -27,10 +54,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.maintenance)
+        setContentView(R.layout.activity_main)
 
         val sharedPref: SharedPreferences = getSharedPreferences(
             getString(R.string.preference_file_key), Context.MODE_PRIVATE )
+
+        lineChart = findViewById(R.id.lineChart)
 
         userProfileId = sharedPref.getInt(getString(R.string.userProfileId), -1)
         val val_limit_inf = sharedPref.getInt(getString(R.string.limit_inf), -1)
@@ -43,8 +72,11 @@ class MainActivity : AppCompatActivity() {
 
         if( userProfileId != -1 ) {
             checkUserProfile( userProfileId )
+
             getICR( userProfileId )
             getISF( userProfileId )
+
+            getChartValues()
         }
     }
 
@@ -306,7 +338,127 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun String.isEmpty(): Boolean {
-        return TextUtils.isEmpty(this)
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    // LINECHART DATA
+    private fun setData( entries1: ArrayList<Entry>, entries2: ArrayList<Entry>, entries3: ArrayList<Entry>, entries4: ArrayList<Entry> ) {
+        val v1 = LineDataSet(entries1, "Valor")
+        val v2 = LineDataSet(entries2, "Alvo")
+        val v3 = LineDataSet(entries3, "Limite Inferior")
+        val v4 = LineDataSet(entries4, "Limite Superior")
+
+        v1.setDrawValues(true)
+        v1.lineWidth = 3f
+        v1.valueTextSize = 10F
+        v1.setColor( Color.CYAN )
+        v1.valueTextColor = Color.CYAN
+
+        v2.setDrawValues(true)
+        v2.lineWidth = 3f
+        v2.valueTextSize = 10F
+        v2.setColor( Color.BLUE )
+        v2.valueTextColor = Color.BLUE
+
+        v3.setDrawValues(true)
+        v3.lineWidth = 3f
+        v3.valueTextSize = 10F
+        v3.setColor( Color.GREEN )
+        v3.valueTextColor = Color.GREEN
+
+        v4.setDrawValues(true)
+        v4.lineWidth = 3f
+        v4.valueTextSize = 10F
+        v4.valueTextColor = Color.RED
+        v4.setColor( Color.RED )
+
+        lineChart.data = LineData(v1, v2, v3, v4)
+
+        lineChart.xAxis.axisMaximum = 259200f
+        lineChart.xAxis.axisMinimum = 0f
+        lineChart.xAxis.textSize = 12f
+        lineChart.xAxis.labelRotationAngle = 0f
+        lineChart.xAxis.granularity = 1800f
+        lineChart.xAxis.position = XAxis.XAxisPosition.BOTTOM
+
+        lineChart.xAxis.valueFormatter = MyValueFormatter()
+
+        lineChart.axisLeft.granularity = 1f
+        lineChart.axisLeft.textSize = 12f
+        lineChart.axisRight.isEnabled = false
+
+        lineChart.legend.textSize = 12F
+
+        lineChart.setTouchEnabled(true)
+        lineChart.setPinchZoom(true)
+
+        lineChart.setNoDataText("No Data Available!")
+        lineChart.description.isEnabled = false
+
+        lineChart.animateXY(1500, 1500)
     }
+
+    private fun getChartValues() {
+        val entries1 = ArrayList<Entry>()
+        val entries2 = ArrayList<Entry>()
+        val entries3 = ArrayList<Entry>()
+        val entries4 = ArrayList<Entry>()
+
+        val request = ServiceBuilder.buildService(ValuesEndPoints::class.java)
+        val call = request.getGlicemia(
+            userProfileId
+        )
+
+        call.enqueue(object : Callback<List<GlicemiaOutput>> {
+            override fun onResponse(
+                call: Call<List<GlicemiaOutput>>,
+                response: Response<List<GlicemiaOutput>>
+            ) {
+                if (response.isSuccessful) {
+                    val c: List<GlicemiaOutput> = response.body()!!
+
+                    if (c != null) {
+                        for (glicemia in c) {
+                            entries1.add( Entry( glicemia.glycemia_datems.toFloat(), glicemia.glycemia_value.toFloat() ) )
+                            entries2.add( Entry( glicemia.glycemia_datems.toFloat(), glicemia.glycemia_target.toFloat() ) )
+                            entries3.add( Entry( glicemia.glycemia_datems.toFloat(), glicemia.glycemia_limit_inf.toFloat() ) )
+                            entries4.add( Entry( glicemia.glycemia_datems.toFloat(), glicemia.glycemia_limit_sup.toFloat() ) )
+
+                        }
+
+                        setData( entries1, entries2, entries3, entries4 )
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<List<GlicemiaOutput>>, t: Throwable) {
+                Toast.makeText(this@MainActivity, "${t.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    class MyValueFormatter : ValueFormatter() {
+
+        val calendar = Calendar.getInstance()
+
+        override fun getFormattedValue(value: Float): String {
+            return value.toString()
+        }
+
+        override fun getAxisLabel(value: Float, axis: AxisBase): String {
+            val valor = value.toInt()
+
+            val datetime = calendar.timeInMillis-259200000
+
+            val simpleDateFormat = SimpleDateFormat("dd/MM/yyyy HH:mm")
+
+            if ( valor >= 0 && valor.rem(1800) == 0 ) {
+                val time = datetime + valor*1000
+                val dateString = simpleDateFormat.format( time )
+                return dateString
+            }
+            else {
+                return ""
+            }
+        }
+    }
+    ////////////////////////////////////////////////////////////////////////////////////////////////
 }
