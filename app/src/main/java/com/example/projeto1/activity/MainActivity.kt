@@ -197,6 +197,9 @@ class MainActivity : AppCompatActivity() {
                             val c: ValuesOutput = response.body()!!
 
                             if (c.success) {
+                                if( TextUtils.equals( "ICR", title ) ) icr = valorInt
+                                else isf = valorInt
+
                                 Toast.makeText(this@MainActivity, R.string.valueSavedLabel, Toast.LENGTH_SHORT).show()
                                 dialog.dismiss()
                             }
