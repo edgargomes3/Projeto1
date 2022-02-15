@@ -56,10 +56,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        lineChart = findViewById(R.id.lineChart)
+
         val sharedPref: SharedPreferences = getSharedPreferences(
             getString(R.string.preference_file_key), Context.MODE_PRIVATE )
-
-        lineChart = findViewById(R.id.lineChart)
 
         userProfileId = sharedPref.getInt(getString(R.string.userProfileId), -1)
         val val_limit_inf = sharedPref.getInt(getString(R.string.limit_inf), -1)
@@ -121,6 +121,13 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
                 true
             }
+            /*
+            R.id.schedule_main_btn -> {
+                val intent = Intent(this@MainActivity, TimeActivity::class.java)
+                startActivity(intent)
+                true
+            }
+            */
             R.id.logout_main_btn -> {
                 val sharedPref: SharedPreferences = getSharedPreferences(
                     getString(R.string.preference_file_key), Context.MODE_PRIVATE )

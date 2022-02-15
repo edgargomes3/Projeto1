@@ -30,6 +30,11 @@
         app:showAsAction="never"
         android:title="Submeter ISF"
         />
+    <!--<item
+        android:id="@+id/schedule_main_btn"
+        app:showAsAction="never"
+        android:title="Editar Horário"
+        />-->
     <item
         android:id="@+id/profile_main_btn"
         app:showAsAction="never"

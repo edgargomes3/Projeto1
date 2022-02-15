@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center"
+    tools:context=".activity.TimeActivity">
+
+    <LinearLayout
+        android:id="@+id/CHOPALayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        android:gravity="center"
+        android:layout_marginHorizontal="5pt"
+        >
+
+        <TextView
+            android:id="@+id/CHOPATextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CHO Pequeno-Almoço: "
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/CHOPAEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/HourPALayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        android:gravity="center"
+        android:layout_marginHorizontal="5pt"
+        app:layout_constraintTop_toBottomOf="@+id/CHOPALayout"
+        >
+
+        <TextView
+            android:id="@+id/HourPATextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hora Pequeno-Almoço: "
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/HourPAEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="time"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:onClick="chooseHour"
+            android:ems="10" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/CHOALayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        android:gravity="center"
+        android:layout_marginTop="10pt"
+        android:layout_marginHorizontal="5pt"
+        app:layout_constraintTop_toBottomOf="@+id/HourPALayout"
+        >
+
+        <TextView
+            android:id="@+id/CHOATextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CHO Almoço: "
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/CHOAEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/HourALayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        android:gravity="center"
+        android:layout_marginHorizontal="5pt"
+        app:layout_constraintTop_toBottomOf="@+id/CHOALayout"
+        >
+
+        <TextView
+            android:id="@+id/HourATextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hora Almoço: "
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/HourAEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="time"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:onClick="chooseHour"
+            android:ems="10" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/CHOLLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        android:gravity="center"
+        android:layout_marginTop="10pt"
+        android:layout_marginHorizontal="5pt"
+        app:layout_constraintTop_toBottomOf="@+id/HourALayout"
+        >
+
+        <TextView
+            android:id="@+id/CHOLTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CHO Lanche: "
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/CHOLEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/HourLLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        android:gravity="center"
+        android:layout_marginHorizontal="5pt"
+        app:layout_constraintTop_toBottomOf="@+id/CHOLLayout"
+        >
+
+        <TextView
+            android:id="@+id/HourLTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hora Lanche: "
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/HourLEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="time"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:onClick="chooseHour"
+            android:ems="10" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/CHOJLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        android:gravity="center"
+        android:layout_marginTop="10pt"
+        android:layout_marginHorizontal="5pt"
+        app:layout_constraintTop_toBottomOf="@+id/HourLLayout"
+        >
+
+        <TextView
+            android:id="@+id/CHOJTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CHO Jantar: "
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/CHOJEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/HourJLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        android:gravity="center"
+        android:layout_marginHorizontal="5pt"
+        app:layout_constraintTop_toBottomOf="@+id/CHOJLayout"
+        >
+
+        <TextView
+            android:id="@+id/HourJTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hora Jantar: "
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/HourJEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="time"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:onClick="chooseHour"
+            android:ems="10" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/SaveLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toBottomOf="@+id/HourJLayout"
+        android:gravity="center"
+        android:layout_margin="20pt"
+        >
+
+        <Button
+            android:id="@+id/calculate_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/saveLabel"
+            android:onClick="saveTime"
+            />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

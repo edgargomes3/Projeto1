@@ -35,6 +35,10 @@ interface ValuesEndPoints {
     fun postGlicemia(@Field("identifier") identifier: Int, @Field("value") value: Int, @Field("inf") inf: Int, @Field("sup") sup: Int, @Field("target") target: Int): Call<ValuesOutput>
 
     @FormUrlEncoded
+    @POST("post/postTime.php")
+    fun postTime(@Field("identifier") identifier: Int, @Field("paCHO") paCHO: Int, @Field("paHour") paHour: String, @Field("aCHO") aCHO: Int, @Field("aHour") aHour: String, @Field("lCHO") lCHO: Int, @Field("lHour") lHour: String, @Field("jCHO") jCHO: Int, @Field("jHour") jHour: String): Call<ValuesOutput>
+
+    @FormUrlEncoded
     @POST("post/getGlicemia.php")
     fun getGlicemia(@Field("identifier") identifier: Int): Call<List<GlicemiaOutput>>
 }

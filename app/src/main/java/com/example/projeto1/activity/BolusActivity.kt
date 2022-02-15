@@ -21,6 +21,7 @@ import retrofit2.Response
 
 class BolusActivity : AppCompatActivity() {
 
+    private lateinit var bolusTextView: TextView
     private lateinit var maxCHOErrorTextView: TextView
     private lateinit var CHOEditText: EditText
     private lateinit var GlicemiaEditText: EditText
@@ -35,6 +36,7 @@ class BolusActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bolus)
 
+        bolusTextView = findViewById(R.id.bolusTextView)
         maxCHOErrorTextView = findViewById(R.id.maxCHOErrorTextView)
         CHOEditText = findViewById(R.id.CHOEditText)
         GlicemiaEditText = findViewById(R.id.GlicemiaEditText)
@@ -83,11 +85,11 @@ class BolusActivity : AppCompatActivity() {
     }
 
     fun calculateBolus( view: View ) {
-        if ( TextUtils.isEmpty(CHOEditText.text) ) {
+        if ( CHOEditText.text.toString().isEmpty() ) {
             Toast.makeText(this@BolusActivity, R.string.emptyCHOLabel, Toast.LENGTH_LONG).show()
             return
         }
-        else if ( TextUtils.isEmpty(GlicemiaEditText.text) ) {
+        else if ( GlicemiaEditText.text.toString().isEmpty() ) {
             Toast.makeText(this@BolusActivity, R.string.emptyGlicemiaLabel, Toast.LENGTH_LONG).show()
             return
         }
@@ -110,11 +112,9 @@ class BolusActivity : AppCompatActivity() {
                         val c: BolusOutput = response.body()!!
 
                         if (c.success) {
-                            Toast.makeText( this@BolusActivity, "Bolus: ${c.value}", Toast.LENGTH_SHORT ).show()
-
-                            val intent = Intent(this@BolusActivity, MainActivity::class.java)
-                            startActivity(intent)
-                            finish()
+                            bolusTextView.text = c.value.toString()
+                            CHOEditText.setText("")
+                            GlicemiaEditText.setText("")
                         }
                     }
                 }
@@ -124,6 +124,10 @@ class BolusActivity : AppCompatActivity() {
                 }
             })
         }
+    }
+
+    private fun String.isEmpty(): Boolean {
+        return TextUtils.isEmpty(this)
     }
 
     companion object {

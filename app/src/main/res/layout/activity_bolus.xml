@@ -9,14 +9,39 @@
     tools:context=".activity.BolusActivity">
 
     <LinearLayout
-        android:id="@+id/errorLayout"
+        android:id="@+id/bolusLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:ignore="MissingConstraints"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/CHOLayout"
         android:gravity="center"
-        android:layout_margin="10pt"
+        android:layout_marginHorizontal="10pt"
+        >
+
+        <TextView
+            android:id="@+id/bolusLabelTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bolus: "
+            android:textSize="22sp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/bolusTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:text=""
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/errorLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toBottomOf="@+id/bolusLayout"
+        android:gravity="center"
+        android:layout_marginHorizontal="10pt"
         >
 
         <TextView
@@ -24,11 +49,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Erro Máximo de CHO: "
+            android:textSize="22sp"
             android:textStyle="bold" />
         <TextView
             android:id="@+id/maxCHOErrorTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="22sp"
             android:text=""
             />
     </LinearLayout>
@@ -38,9 +65,9 @@
         android:layout_height="wrap_content"
         tools:ignore="MissingConstraints"
         app:layout_constraintTop_toBottomOf="@+id/errorLayout"
-        app:layout_constraintBottom_toBottomOf="@+id/GlicemiaLayout"
         android:gravity="center"
-        android:layout_margin="10pt"
+        android:layout_marginTop="10pt"
+        android:layout_marginHorizontal="10pt"
         >
 
         <TextView
@@ -48,7 +75,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="CHO: "
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <EditText
@@ -64,9 +91,8 @@
         android:layout_height="wrap_content"
         tools:ignore="MissingConstraints"
         app:layout_constraintTop_toBottomOf="@+id/CHOLayout"
-        app:layout_constraintBottom_toTopOf="@+id/CalculateLayout"
         android:gravity="center"
-        android:layout_margin="10pt"
+        android:layout_marginHorizontal="10pt"
         >
 
         <TextView
@@ -74,7 +100,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Valor Glicémico: "
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <EditText
@@ -93,7 +119,7 @@
         app:layout_constraintTop_toBottomOf="@+id/GlicemiaLayout"
         app:layout_constraintBottom_toBottomOf="parent"
         android:gravity="center"
-        android:layout_margin="10pt"
+        android:layout_margin="25pt"
         >
 
         <Button

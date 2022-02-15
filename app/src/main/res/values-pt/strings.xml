@@ -31,4 +31,6 @@
     <string name="emptyGlicemiaLabel">Parâmetro glicemia está vazio.</string>
     <string name="emptyGlicemiaTargetLabel">Parâmetro alvo glicémico está vazio.</string>
     <string name="allParameterEmptyLabel">Pelo menos um parâmetro deve estar preenchidos.</string>
+    <string name="allParameterNotEmptyLabel">Todos os parâmetros devem estar preenchidos.</string>
+    <string name="successTimeSaveLabel">Horário guardado com sucesso.</string>
 </resources>
